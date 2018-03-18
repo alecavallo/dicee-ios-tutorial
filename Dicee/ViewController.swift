@@ -49,5 +49,11 @@ class ViewController: UIViewController {
 
     }
     
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+
+        updateDiceImages()
+
+    }
+    
 }
 

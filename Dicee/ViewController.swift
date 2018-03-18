@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        updateDiceImages()
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,6 +31,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func rollButtonPressed(_ sender: UIButton) {
+        updateDiceImages()
+    }
+    
+    func updateDiceImages() {
 
         randomDiceIndexLeft = Int(arc4random_uniform(6))
         randomDiceIndexRight = Int(arc4random_uniform(6))

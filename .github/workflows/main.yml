@@ -35,6 +35,5 @@ jobs:
 
       - name: List files
         run: |
-          set -x
           ls -lahR
 

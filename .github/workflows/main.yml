@@ -25,20 +25,13 @@ jobs:
           scheme: ${{ 'default' }}
         run: |
           set -x
+          mkdir -p ./build/
+          mkdir -p ./build/ipa
+          ls -lahR
           if [ $scheme = default ]; then scheme=$(cat default); fi
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild clean build analyze -allowProvisioningUpdates CODE_SIGN_STYLE=Automatic -configuration Debug -sdk iphonesimulator -scheme "$scheme" -archivePath "./build/${scheme}.xcarchive" -"$filetype_parameter" "$file_to_build" | xcpretty && exit ${PIPESTATUS[0]}
-
-      - name: Build IPA
-        env:
-          scheme: ${{ 'default' }}
-        run: |
-          mkdir -p ./build/
-          mkdir -p ./build/ipa
-          if [ $scheme = default ]; then scheme=$(cat default); fi
-          xcodebuild -project ExampleXcode.xcodeproj -scheme "$scheme" -allowProvisioningUpdates -archivePath ./build/ExampleXcode.xcarchive archive
-          xcodebuild -exportArchive -archivePath ./build/ExampleXcode.xcarchive -exportPath ./build/ipa -exportOptionsPlist ./ExampleXcode/ExampleXcode-Info.plist
+          xcodebuild clean build analyze -allowProvisioningUpdates CODE_SIGN_STYLE=Automatic -configuration Debug -sdk iphoneos -scheme "$scheme" -archivePath "./build/${scheme}.xcarchive" -"$filetype_parameter" "$file_to_build" | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: List files
         run: |

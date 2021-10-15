@@ -1,0 +1,5 @@
+//:configuration = Release
+DEVELOPMENT_TEAM = BBB111AAA
+PROVISIONING_PROFILE_SPECIFIER = My Release Provisioning Profile
+
+//:completeSettings = none

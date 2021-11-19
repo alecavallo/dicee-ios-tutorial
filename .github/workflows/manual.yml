@@ -33,6 +33,3 @@ jobs:
           slack-text: This is a thread reply
           slack-optional-thread_ts: ${{ fromJson(steps.send-message.outputs.slack-result).response.message.ts }}
           #slack-optional-reply_broadcast: true # To broadcast thread reply in channel
-
-      - name: Send "Send Thread Message" Result
-        run: echo "Data - ${{ steps.send-message.outputs.slack-result }}"

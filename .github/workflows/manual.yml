@@ -10,7 +10,7 @@ on:
 jobs:
   slack-notifications:
     runs-on: ubuntu-20.04
-    name: Sends a message to Slack when a push, a pull request or an issue is made
+    name: Notify Event
     steps:
       - name: Send message to Slack API
         uses: archive/github-actions-slack@v2.0.0
@@ -19,7 +19,7 @@ jobs:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: C02NC668LJV
           slack-function: send-message
-          slack-text: Hello! Event "${{ github.event_name }}" in "${{ github.repository }}" 🤓
+          slack-text: A new event "${{ github.event_name }}" has been triggered by "${{github.actor}}" in "${{ github.repository }}:${{github.ref}}" with sha ${{github.sha}}
       - name: Result from "Send Message"
         run: echo "The result was ${{ steps.send-message.outputs.slack-result }}"
       - name: Some step in between

@@ -20,8 +20,6 @@ jobs:
           slack-channel: C02NC668LJV
           slack-function: send-message
           slack-text: Hello team!! A new "${{ github.event_name }}" has been triggered by "${{github.actor}}" in "${{ github.repository }}:${{github.ref}}" with sha ${{github.sha}}. See the progreess on https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
-      - name: Result from "Send Message"
-        run: echo "The result was ${{ steps.send-message.outputs.slack-result }}"
       - name: Some step in between
         run: echo "..."
       - name: Send Thread Message

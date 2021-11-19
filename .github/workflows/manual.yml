@@ -22,12 +22,27 @@ jobs:
           slack-text: Hello team!! A new "${{ github.event_name }}" has been triggered by "${{github.actor}}" in "${{ github.repository }}:${{github.ref}}" with sha ${{github.sha}}. See the progreess on https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
       - name: Some step in between
         run: echo "..."
-      - name: Send Thread Message
+      - name: Test started
         uses: archive/github-actions-slack@master
         with:
           slack-function: send-message
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: ${{ fromJson(steps.send-message.outputs.slack-result).response.channel }}
-          slack-text: This is a thread reply
+          slack-text: Beginning with the tests rounds
           slack-optional-thread_ts: ${{ fromJson(steps.send-message.outputs.slack-result).response.message.ts }}
-          #slack-optional-reply_broadcast: true # To broadcast thread reply in channel
+      - name: Test Passed
+        uses: archive/github-actions-slack@master
+        with:
+          slack-function: send-message
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: ${{ fromJson(steps.send-message.outputs.slack-result).response.channel }}
+          slack-text: ":large_green_circle: All Tests has been passed"
+          slack-optional-thread_ts: ${{ fromJson(steps.send-message.outputs.slack-result).response.message.ts }}
+      - name: Test FAILED
+        uses: archive/github-actions-slack@master
+        with:
+          slack-function: send-message
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: ${{ fromJson(steps.send-message.outputs.slack-result).response.channel }}
+          slack-text: ":red_cirgle: One or more tests has been failed"
+          slack-optional-thread_ts: ${{ fromJson(steps.send-message.outputs.slack-result).response.message.ts }}

@@ -15,7 +15,7 @@ jobs:
         uses: archive/github-actions-slack@v2.0.0
         id: notify
         with:
-          slack-bot-user-oauth-access-token: 'xoxb-161581692882-2744886620741-hL6b9JXDD82LGb1DHjSNtrIb'
+          slack-bot-user-oauth-access-token: 'xoxb-161581692882-2744886620741-7fKHpWBGdxByc5JoL9PgkJvN'
           slack-channel: C02NC668LJV
           slack-text: '${{ github.event.inputs.name }}'
           slack-optional-icon_emoji: ":fire:"

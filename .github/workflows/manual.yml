@@ -1,0 +1,26 @@
+name: Test post to slack
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Text to post in slack'
+        required: false
+        default: 'Hello World!'
+
+jobs:
+  SlackFirstMessage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test post to slack
+        uses: archive/github-actions-slack@v2.0.0
+        id: notify
+        with:
+          slack-bot-user-oauth-access-token: 'xoxb-161581692882-2744886620741-hL6b9JXDD82LGb1DHjSNtrIb'
+          slack-channel: C02NC668LJV
+          slack-text: '${{ github.event.inputs.name }}'
+          slack-optional-icon_emoji: ":fire:"
+          slack-optional-as_user: false
+          
+      - name: Result from "Send Message"
+        if: always()
+        run: echo "The result was ${{ steps.notify.outputs.slack-result }}"

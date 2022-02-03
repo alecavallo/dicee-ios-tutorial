@@ -46,4 +46,4 @@ jobs:
           echo "That's all folks!"
       - name: The freaking test
         run: |
-          echo "The choose is: ${{env[github.event.inputs.account]}}
+          echo "The choose is: ${{env[github.event.inputs.account]}}"

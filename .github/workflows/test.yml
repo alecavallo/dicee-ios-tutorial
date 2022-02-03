@@ -41,9 +41,9 @@ jobs:
       
       - name: Dumping selected variables
         run: |
-          echo "Changeset: ${github.event.inputs.changeset-only}"
-          echo "Account: ${github.event.inputs.account}"
+          echo "Changeset: ${{github.event.inputs.changeset-only}}"
+          echo "Account: ${{github.event.inputs.account}}"
           echo "That's all folks!"
       - name: The freaking test
         run: |
-          echo "The choose is: ${env[github.event.inputs.account]}
+          echo "The choose is: ${{env[github.event.inputs.account]}}

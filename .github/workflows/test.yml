@@ -24,18 +24,14 @@ env:
   opt1: 123
   opt2: 456
   opt3: 789
-  deployer-opt1: do1
-  deployer-opt2: do2
-  deployer-opt3: do3
+  deployer-123: do1
+  deployer-456: do2
+  deployer-789: do3
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   step1:
-    env:
-      opt1: do1
-      opt2: do2
-      opt3: do3
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -54,6 +50,6 @@ jobs:
       - name: The freaking test
         run: |
           echo "The choose is: ${{env[github.event.inputs.account]}}"
-          echo "It will select ${{join('deployer-',github.event.inputs.account)}}"
-          echo "Weird thing: ${{env[join('deployer-',github.event.inputs.account)]}}"
+          echo "It will select ${{join('deployer-',env[github.event.inputs.account])}}"
+          echo "Weird thing: ${{env[join('deployer-',env[github.event.inputs.account]t)]}}"
 

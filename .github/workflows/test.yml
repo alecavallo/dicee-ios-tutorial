@@ -24,9 +24,7 @@ env:
   opt1: 123
   opt2: 456
   opt3: 789
-  deployer-opt1:
-    pepe: 1
-    coco: 2
+  deployer-opt1: do1
   deployer-opt2: do2
   deployer-opt3: do3
 
@@ -52,8 +50,9 @@ jobs:
         run: |
           echo "Changeset: ${{github.event.inputs.changeset-only}}"
           echo "Account: ${{github.event.inputs.account}}"
-          echo "Weird thing: ${{deployer-opt1}}"
           echo "That's all folks!"
       - name: The freaking test
         run: |
           echo "The choose is: ${{env[github.event.inputs.account]}}"
+          echo "Weird thing: ${{env[join('deployer-',github.event.inputs.account)]}}"
+

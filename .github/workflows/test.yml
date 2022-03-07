@@ -54,5 +54,6 @@ jobs:
       - name: The freaking test
         run: |
           echo "The choose is: ${{env[github.event.inputs.account]}}"
+          echo "It will select ${{join('deployer-',github.event.inputs.account)}}"
           echo "Weird thing: ${{env[join('deployer-',github.event.inputs.account)]}}"
 

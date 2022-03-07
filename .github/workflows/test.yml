@@ -46,7 +46,7 @@ jobs:
         run: |
           echo "Changeset: ${{github.event.inputs.changeset-only}}"
           echo "Account: ${{github.event.inputs.account}}"
-          echo "Weird thing: ${{env['deployer-'github.event.inputs.account]}}
+          echo "Weird thing: ${{env['deployer-'github.event.inputs.account]}}"
           echo "That's all folks!"
       - name: The freaking test
         run: |

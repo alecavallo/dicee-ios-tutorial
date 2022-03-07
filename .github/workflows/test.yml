@@ -24,7 +24,7 @@ env:
   opt1: 123
   opt2: 456
   opt3: 789
-  deployer-opt1: do1
+  deployer-opt1: {sara: do, si: no}
   deployer-opt2: do2
   deployer-opt3: do3
 
@@ -33,9 +33,9 @@ jobs:
   # This workflow contains a single job called "build"
   step1:
     env:
-      deployer-opt1: do1
-      deployer-opt2: do2
-      deployer-opt3: do3
+      opt1: do1
+      opt2: do2
+      opt3: do3
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -50,7 +50,7 @@ jobs:
         run: |
           echo "Changeset: ${{github.event.inputs.changeset-only}}"
           echo "Account: ${{github.event.inputs.account}}"
-          echo "Weird thing: ${{jobs.step1.env[github.event.inputs.account]}}"
+          echo "Weird thing: ${{deployer-opt1}}"
           echo "That's all folks!"
       - name: The freaking test
         run: |

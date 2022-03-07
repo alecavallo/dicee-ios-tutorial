@@ -24,7 +24,9 @@ env:
   opt1: 123
   opt2: 456
   opt3: 789
-  deployer-opt1: {sara: do, si: no}
+  deployer-opt1:
+    pepe: 1
+    coco: 2
   deployer-opt2: do2
   deployer-opt3: do3
 

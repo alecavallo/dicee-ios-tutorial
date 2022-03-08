@@ -31,11 +31,19 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  step1:
-    env:
-      special_runner: ${{env[format('deployer-{0}',github.event.inputs.account)]}} 
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      runner: ${{ steps.MapRunners.outputs.runner }}
+    steps:
+      - name: Map Runners
+        id: MapRunners
+        run: echo "::set-output name=runner::${{env[format('deployer-{0}',github.event.inputs.account)]}}"
+
+  job2:
+    needs: job1
     # The type of runner that the job will run on
-    runs-on: ${{special_runner}}
+    runs-on: ${{needs.job1.outputs.runner}}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

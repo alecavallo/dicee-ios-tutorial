@@ -24,16 +24,18 @@ env:
   opt1: 123
   opt2: 456
   opt3: 789
-  deployer-123: ubuntu-latest
-  deployer-456: ubuntu-18.04
-  deployer-789: macos-latest
+  deployer-opt1: ubuntu-latest
+  deployer-opt2: ubuntu-18.04
+  deployer-opt3: macos-latest
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   step1:
+    env:
+      special_runner: ${{env[format('deployer-{0}',github.event.inputs.account)]}} 
     # The type of runner that the job will run on
-    runs-on: ${{format('deployer-{0}',github.event.inputs.account)}}
+    runs-on: ${{special_runner}}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

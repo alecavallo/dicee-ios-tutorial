@@ -61,5 +61,5 @@ jobs:
         run: |
           echo "The choose is: ${{env[github.event.inputs.account]}}"
           echo "It will select ${{format('deployer-{0}',github.event.inputs.account)}}"
-          echo "Weird thing: ${{env[format('deployer-{0}',env[github.event.inputs.account])]}}"
+          echo "Weird thing: ${{needs.get_runner.outputs.runner}}"
 

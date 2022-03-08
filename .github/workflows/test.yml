@@ -24,9 +24,9 @@ env:
   opt1: 123
   opt2: 456
   opt3: 789
-  deployer-123: do1
-  deployer-456: do2
-  deployer-789: do3
+  deployer-123: ubuntu-latest
+  deployer-456: ubuntu-18.04
+  deployer-789: macos-latest
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
